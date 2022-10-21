@@ -18,12 +18,13 @@
 
     <link rel="apple-touch-icon" sizes="76x76" href="./assets/img/apple-icon.png">
     <link rel="icon" type="image/png" href="./assets/img/favicon.png">
+    <script src="https://accounts.google.com/gsi/client" async defer></script>
 
     <title>
       
 
       
-      Soft UI Design System by Creative Tim
+      Compatible us
 
       
     </title>
@@ -814,8 +815,8 @@
               <p id="usermail" hidden></p>
               <p id="username" hidden></p>
 
-            <a id="username-field" href="https://www.creative-tim.com/product/soft-ui-design-system-pro" class="btn btn-sm  bg-gradient-primary  btn-round mb-0 me-1 mt-2 mt-md-0">
-            </a>
+            <div id="username-field">
+            </div>
             
           </li>
         </ul>
@@ -826,14 +827,28 @@
   </div></div></div>
 
 <script type="text/javascript">
-                const username = document.getElementById("usermail").textContent.length > 0 ? document.getElementById("username").textContent  : 'Login with gmail'
+              //   const username = document.getElementById("usermail").textContent.length > 0 ? document.getElementById("username").textContent  : 'Login with gmail'
               
-              document.getElementById("username-field").innerHTML = username;
-
-              if(username !== "Login with gmail") {
-                document.getElementById("username-field").href = '#';
-              }
+              // document.getElementById("username-field").innerHTML = username;
               </script>
+
+<script>
+        function handleCredentialResponse(response) {
+          console.log("Encoded JWT ID token: " + response.credential);
+        }
+        window.onload = function () {
+          google.accounts.id.initialize({
+            client_id: "268603502006-qtbunht7nuog7k434o3ugec1dgrdi9a5.apps.googleusercontent.com",
+            callback: handleCredentialResponse
+          });
+          google.accounts.id.renderButton(
+            document.getElementById("username-field"),
+            { theme: "outline", size: "medium", shape: "circle", }  // customization attributes
+          );
+          google.accounts.id.prompt(); // also display the One Tap dialog
+        }
+    </script>
+
 
   <header class="header-2">
     <div class="page-header min-vh-75 relative" style="background-image: url('./assets/img/curved-images/curved.jpg')">
