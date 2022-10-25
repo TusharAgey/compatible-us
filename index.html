@@ -820,11 +820,11 @@
               </div>
 
               <div id="gSignOut-button" hidden>
-                <a href="#" class="btn btn-sm  bg-gradient-primary  btn-round mb-0 me-1 mt-2 mt-md-0" onClick="handleSignOut">
+                <a href="#" class="btn btn-sm  bg-gradient-primary  btn-round mb-0 me-1 mt-2 mt-md-0" onClick="return handleSignOut()">
 
                     <img id="user-profile-pic" hidden style="border-radius: 1.875rem;height: 30px"/>
                   <span id="username-field" style="text-transform: capitalize;"></span>
-                   Signout
+                  <span style="text-transform: capitalize;"> Signout</span>
                  </a>
               </div>
               </li>
@@ -838,13 +838,13 @@
             const handleCredentialResponse = (response) => {
               const headerObj = KJUR.jws.JWS.readSafeJSONString(b64utoutf8(response.credential.split(".")[0]));
               const payloadObj = KJUR.jws.JWS.readSafeJSONString(b64utoutf8(response.credential.split(".")[1]));
-              console.log({headerObj, payloadObj});
+                            // document.getElementById("usermail-field").innerHTML = payloadObj.email;
+
               document.getElementById("gSignIn-button").hidden = true;
               document.getElementById("gSignOut-button").hidden = false;
               document.getElementById("username-field").innerHTML = payloadObj.given_name;
               document.getElementById("user-profile-pic").src = payloadObj.picture;
                             document.getElementById("user-profile-pic").hidden = false;
-
             };
             const handleSignOut = () => {
                           document.getElementById("gSignIn-button").hidden = false;
