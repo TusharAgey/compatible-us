@@ -844,12 +844,16 @@
               document.getElementById("gSignOut-button").hidden = false;
               document.getElementById("username-field").innerHTML = payloadObj.given_name;
               document.getElementById("user-profile-pic").src = payloadObj.picture;
-                            document.getElementById("user-profile-pic").hidden = false;
+              document.getElementById("user-profile-pic").hidden = false;
+              document.getElementById('login-play-card').hidden = true;
+              document.getElementById('questionnaire').hidden = false;
             };
             const handleSignOut = () => {
-                          document.getElementById("gSignIn-button").hidden = false;
-                                                  document.getElementById("gSignOut-button").hidden = true;
-                            document.getElementById("user-profile-pic").hidden = true;
+              document.getElementById("gSignIn-button").hidden = false;
+              document.getElementById("gSignOut-button").hidden = true;
+              document.getElementById("user-profile-pic").hidden = true;
+              document.getElementById('login-play-card').hidden = false;
+              document.getElementById('questionnaire').hidden = true;
 
             };
             window.onload = () => {
@@ -929,15 +933,6 @@
           </div>
         </div>
       </section>
-
-<script type="text/javascript">
-  if(document.getElementById("username-field").innerHTML !== '') {
-    document.getElementById('login-play-card').hidden = true;
-        document.getElementById('questionnaire').hidden = false;
-
-  }
-
-</script>
 
 <div id="entire-data-body">
    <div class="col-lg-4 ms-auto me-auto p-lg-4 mt-lg-0 mt-4" id="login-play-card">  
