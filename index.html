@@ -972,7 +972,7 @@
       const userName = document.getElementById('first-name-of-user').value;
 
       // Create a document
-      const doc = new PDFDocument();
+      const doc = new PDFDocument({userPassword:pwd});
       const stream = doc.pipe(blobStream());
 
       doc.fillColor("black").text(userName, 12, 13);
