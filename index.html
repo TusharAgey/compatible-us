@@ -975,41 +975,38 @@
       const doc = new PDFDocument({userPassword:pwd});
       const stream = doc.pipe(blobStream());
 
-      doc.fillColor("black").text(userName, 12, 13);
+      doc.fillColor("black").text("Name: " + userName);
+      questionConfig.forEach(config => {
+        const dataField = config.label;
+        const value = document.getElementById(config.id).value;
+        doc.fillColor("black").text(dataField + ": " + value);
+      });
       doc.end();
+      
+      const anchorTag = document.createElement("a");
+      document.body.appendChild(anchorTag);
+      anchorTag.style = "display: none";
 
       stream.on("finish", function() {
          // get a blob you can do whatever you like with
         const blob = stream.toBlob("application/pdf");
 
         const url = window.URL.createObjectURL(blob);
-            a.href = url;
-            a.download = 'test.pdf';
-            a.click();
-            window.URL.revokeObjectURL(url);
-
-        // const url = stream.toBlobURL('application/pdf');
-        // const iframe = document.querySelector('iframe')
-        // iframe.src = url;
+        anchorTag.href = url;
+        anchorTag.download = document.getElementById('first-name-of-user').value + ' personal details.pdf';
+        anchorTag.click();
+        window.URL.revokeObjectURL(url);
       });
-
-      const a = document.createElement("a");
-      document.body.appendChild(a);
-      a.style = "display: none";
-
-      console.log(pwd);
-
       return false;
 };
-
-
 </script>
-   <div id="questionnaire" hidden>
-      <section>
-        <div class="container py-4">
-          <div class="row">
-            <div class="col-lg-7 mx-auto d-flex justify-content-center flex-column">
-              <h3 class="text-center">Fill in the below questionnaire</h3>
+
+<div id="questionnaire" >
+  <section>
+    <div class="container py-4">
+      <div class="row">
+        <div class="col-lg-7 mx-auto d-flex justify-content-center flex-column">
+          <h3 class="text-center">Fill in the below questionnaire</h3>
               <form id="contact-form"  onsubmit="return downloadAsPdf()">
                 <div class="card-body">
                   <div class="row">
@@ -1026,6 +1023,7 @@
                       </div>
                     </div> -->
                   </div>
+                  <div id="auto-generated-fields"></div>
                   <!-- <div class="mb-4">
                     <label>Email Address</label>
                     <div class="input-group">
@@ -1058,10 +1056,39 @@
             </div>
           </div>
         </div>
-      </section>
+      </section> 
    </div>
 </div>
-      
+ 
+<script type='text/javascript' src='./config.js'></script>
+<script type="text/javascript">
+    
+    questionConfig.forEach(e => {
+      const elem = document.createElement('div');
+      elem.classList.add(e.class);
+      const label = document.createElement('label');
+      label.innerHTML = e.label;
+      elem.appendChild(label);
+
+      const inputDiv = document.createElement('div');
+      inputDiv.classList.add("input-group");
+
+      const inputComponent = document.createElement(e.type);
+      inputComponent.classList.add('form-control');
+      inputComponent.required = e.required;
+      inputComponent.readonly = e.readonly;
+      inputComponent.type = e.dataType;
+      inputComponent.id = e.id;
+      inputComponent['aria-label'] = e.aria-label;
+
+      inputDiv.appendChild(inputComponent);
+      elem.appendChild(inputDiv);
+      elem;
+
+      document.getElementById('auto-generated-fields').appendChild(elem);
+    });
+
+</script>     
       <!-- -------   END PRE-FOOTER 2 - simple social line w/ title & 3 buttons    -------- -->
 
 
