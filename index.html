@@ -977,8 +977,10 @@
 
       doc.fillColor("black").text("Name: " + userName);
       questionConfig.forEach(config => {
-        const dataField = config.label;
-        const value = document.getElementById(config.id).value;
+        const dataField = config.pdfField;
+        const value = config.type === 'select' ?
+          Array.from(document.getElementById(config.id)).filter(e => e.selected).map(e => e.value).join(', ')
+        :document.getElementById(config.id).value;
         doc.fillColor("black").text(dataField + ": " + value);
       });
       doc.end();
@@ -1001,7 +1003,7 @@
 };
 </script>
 
-<div id="questionnaire" >
+<div id="questionnaire" hidden>
   <section>
     <div class="container py-4">
       <div class="row">
@@ -1074,6 +1076,16 @@
       inputDiv.classList.add("input-group");
 
       const inputComponent = document.createElement(e.type);
+      if(e.type === 'select'){
+        inputComponent.multiple = e.multiple;
+        e.options.forEach(opt => {
+          const option = document.createElement(
+            'option'
+          );
+          option.innerHTML = opt;
+          inputComponent.appendChild(option);
+        });
+      }
       inputComponent.classList.add('form-control');
       inputComponent.required = e.required;
       inputComponent.readonly = e.readonly;
