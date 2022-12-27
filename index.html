@@ -880,7 +880,7 @@
             <div class="row">
               <div class="col-lg-7 text-center mx-auto">
                 <h1 class="text-white pt-3 mt-n5">Compatible us</h1>
-                <p class="lead text-white mt-3">Generate a password protected and sharable document telling about yourself to a potential partner! </p>
+                <p class="lead text-white mt-3">Create a customized bio in minutes that can be shared with a potential partner. </p>
               </div>
             </div>
           </div>
@@ -913,23 +913,23 @@
                   <div class="p-3 text-center">
                     <h1 class="text-gradient text-primary"><span id="state1" countTo="20">0</span>+</h1>
                     <h5 class="mt-3">Questions</h5>
-                    <p class="text-sm">Simple collection of questions that will guide you to create a personalized portfolio.</p>
+                    <p class="text-sm">Simple collection of questions that will guide you to create a personalized and meaningful bio.</p>
                   </div>
                   <hr class="vertical dark">
                 </div>
                 <div class="col-md-4 position-relative">
                   <div class="p-3 text-center">
-                    <h1 class="text-gradient text-primary"> <span id="state2" countTo="15">0</span></h1>
+                    <h1 class="text-gradient text-primary"> <span id="state2" countTo="5">0</span> min</h1>
                     <h5 class="mt-3">Time</h5>
-                    <p class="text-sm">Answer the question and share generated pdf to potential partner.</p>
+                    <p class="text-sm">Answer the question and share generated pdf with a potential partner.</p>
                   </div>
                   <hr class="vertical dark">
                 </div>
                 <div class="col-md-4">
                   <div class="p-3 text-center">
-                    <h1 class="text-gradient text-primary" id="state3" countTo="4">0</h1>
+                    <h1 class="text-gradient text-primary">1 PDF</h1>
                     <h5 class="mt-3">Privacy</h5>
-                    <p class="text-sm">PDF generated on the client side and protected by custom password.</p>
+                    <p class="text-sm">Generated PDF is password protected and generated on the user side to ensure all personal data is safe.</p>
                   </div>
                 </div>
               </div>
@@ -1045,9 +1045,9 @@
                   <div class="row">
                     <div class="col-md-12">
                       <div class="form-check form-switch mb-4">
-                        <input class="form-check-input" type="checkbox" id="flexSwitchCheckDefault" checked="">
+                       <!--  <input class="form-check-input" type="checkbox" id="flexSwitchCheckDefault" checked="">
                         <label class="form-check-label" for="flexSwitchCheckDefault">I agree to the <a href="javascript:;" class="text-dark"><u>Terms and Conditions</u></a>.</label>
-                      </div>
+                       --></div>
                     </div>
                     <div class="col-md-12">
                       <button onclick="downloadAsPdf" class="btn bg-gradient-dark w-100">Download as PDF</button>
@@ -1071,6 +1071,13 @@
       const label = document.createElement('label');
       label.innerHTML = e.label;
       elem.appendChild(label);
+
+      if(e.required) {
+        const requiredAsterisc = document.createElement('span')
+        requiredAsterisc.innerHTML = "*";
+        requiredAsterisc.style = "color: orange";
+        elem.appendChild(requiredAsterisc)
+      }
 
       const inputDiv = document.createElement('div');
       inputDiv.classList.add("input-group");
