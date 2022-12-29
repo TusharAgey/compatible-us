@@ -967,15 +967,46 @@
 <script src="https://github.com/devongovett/blob-stream/releases/download/v0.1.3/blob-stream.js"></script>
 
 <script type="text/javascript">
+  function generateHr(doc, y) {
+    doc
+      .strokeColor("#aaaaaa")
+      .lineWidth(1)
+      .moveTo(50, y)
+      .lineTo(550, y)
+      .stroke();
+  };
+  
+  function generateHeader(doc, userName) {
+    doc
+      .fillColor("#444444")
+      .fontSize(20)
+      .text( "Personal details of " + userName, {align: 'center'})
+      .fontSize(10)
+      .moveDown();
+  }
+
   const downloadAsPdf = () => {
       const pwd = document.getElementById('user-password-pdf-lock').value;
       const userName = document.getElementById('first-name-of-user').value;
 
       // Create a document
-      const doc = new PDFDocument({userPassword:pwd});
+      const doc = new PDFDocument(
+        {
+          info:{
+            Title: 'Personal Details - ' + userName,
+            Author: userName,
+            Subject: 'Personal Details - ' + userName,
+          },
+          size: 'A4',
+          font: 'Times-Roman',
+          userPassword: pwd,
+        }
+      );
       const stream = doc.pipe(blobStream());
+      generateHeader(doc, userName);
+      generateHr(doc, 100);
 
-      doc.fillColor("black").text("Name: " + userName);
+      doc.fillColor("black").text("Name: " + userName, {align: 'left'});
       questionConfig.forEach(config => {
         const dataField = config.pdfField;
         const value = config.type === 'select' ?
