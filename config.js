@@ -23,6 +23,7 @@ const questions = [
 
 // Lifestyle
 ['Sleep schedule', 'user-sleep-schedule-field', true, 'input'],
+['Can you sleep with lights on?', 'user-existing-medical-condition', true, 'select', false, ['Yes', 'No']],
 ['Weekday routine', 'user-weekday-schedule-field', true, 'input'],
 ['Weekend routine', 'user-weekend-schedule-field', true, 'input'],
 ['Do you workout? If yes, what\'s the frequency?', 'user-workout-field', true, 'input'],
@@ -31,7 +32,7 @@ const questions = [
 ['Favourite holiday destination', 'user-holiday-dest', true, 'input'],
 
 // Marriage expectations
-['Do you believe in the custom of dowry', 'user-dowry-belief', true, 'input'],
+['Do you believe in the custom of dowry', 'user-dowry-belief', true, 'select', false, ['Yes', 'No']],
 ['How much do you think one should spend on marriage?', 'user-marriage-expense-belief', true, 'input'],
 ['What according to you is the best age to get married?', 'user-marriage-age-belief', true, 'input'],
 ['What according to you is the best age to have children?', 'user-children-age-belief', true, 'input'],
@@ -45,13 +46,15 @@ const questions = [
 ['What is the basic salary?', 'user-basic-salary-field', true, 'input'],
 ['Do you have a passport?', 'user-passport-preference', true, 'select', false, ['Yes', 'No']],
 ['What is the office leave policy? How many paid leaves are there?', 'user-office-leave-policy', true, 'input'],
-['Do you have life insurance?', 'user-life-insurance-belief', true, 'input'],
-['Do you have Term life insurance?', 'user-term-life-insurance-belief', true, 'input'],
-['Do you invest in mutual funds?', 'user-mutual-funds-belief', true, 'input'],
-['Do you invest in stocks?', 'user-stocks-belief', true, 'input'],
-['Do you have any existing loan?', 'user-existing-loan-belief', true, 'input'],
+['Do you have life insurance?', 'user-life-insurance-belief', true, 'select', false, ['Yes', 'No']],
+['Do you have Term life insurance?', 'user-term-life-insurance-belief', true, 'select', false, ['Yes', 'No']],
+['Do you invest in mutual funds?', 'user-mutual-funds-belief', true, 'select', false, ['Yes', 'No']],
+['Do you invest in stocks?', 'user-stocks-belief', true, 'select', false, ['Yes', 'No']],
+['Do you have any existing loan?', 'user-existing-loan-belief', true, 'select', false, ['Yes', 'No']],
 
-// Ambitions
+// Medical history
+['Do you have any existing medical condition? If yes, what is it?', 'user-existing-medical-condition', true, 'input']
+
 ];
 
 
