@@ -869,6 +869,10 @@
                 document.getElementById("gSignIn-button"),
                 { theme: "filled_blue", size: "medium", shape: "pill", }  // customization attributes
               );
+              google.accounts.id.renderButton(
+                document.getElementById("login-to-continue"),
+                { theme: "filled_white", size: "medium", shape: "pill", }  // customization attributes
+              );
               google.accounts.id.prompt(); // also display the One Tap dialog
             }
         </script>
@@ -940,7 +944,7 @@
 
 <div id="entire-data-body">
    <div class="col-lg-4 ms-auto me-auto p-lg-4 mt-lg-0 mt-4" id="login-play-card">  
-              <div onclick='google.accounts.id.prompt()' class="card card-background card-background-mask-primary tilt" data-tilt>
+              <div class="card card-background card-background-mask-primary tilt" data-tilt>
                   <div class="full-background" style="background-image: url('assets/img/card-2.jpg')"></div>
                   <div class="card-body pt-7 text-center">
                     <div class="icon icon-lg up mb-3 mt-3">
@@ -959,7 +963,9 @@
                         </g>
                         </svg>
                     </div>
-                    <h2 class="text-white up mb-0">Login to continue</h2>
+                    <div id="login-to-continue">
+                      
+                    </div>
                   </div>
                 </div>
             </div>
